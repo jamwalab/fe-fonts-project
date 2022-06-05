@@ -1,9 +1,8 @@
 import React from 'react';
 import { Box, Typography, Tabs, Tab } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { StoreProvider, useStoreContext } from "../hooks/GlobalState";
+import { useStoreContext } from "../hooks/GlobalState";
 import { SELECT_TAB } from "..//hooks/actions";
-import { colorChannel } from '@mui/system';
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -53,7 +52,8 @@ const Nav = () => {
     <Box sx={{
         display: "flex", 
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        padding: "10px 20px"
       }}>
       <Typography>
         Please select one font
@@ -62,11 +62,6 @@ const Nav = () => {
         value={selectTab}
         onChange={handleChange}
         aria-label="secondary tabs example"
-        TabIndicatorProps = {{
-          style: {
-            opacity: "10%"
-          }
-        }}
       >
         {
           tabData.map(font => (

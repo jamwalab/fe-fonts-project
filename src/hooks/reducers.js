@@ -1,4 +1,4 @@
-import { UPDATE_TABS, UPDATE_TAB_DATA, SELECT_TAB } from "./actions";
+import { UPDATE_TABS, RESET_TAB_DATA, SELECT_TAB } from "./actions";
 
 import { useReducer } from "react";
 
@@ -9,8 +9,11 @@ export const reducer = (state, action) => {
         ...state,
         tabData: [...action.tabData]
       };
-    case UPDATE_TAB_DATA:
-      return state;
+    case RESET_TAB_DATA:
+      return {
+        ...state,
+        tabData: []
+      };
     case SELECT_TAB:
       return {
         ...state,
