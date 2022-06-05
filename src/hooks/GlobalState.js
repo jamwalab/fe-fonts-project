@@ -7,7 +7,7 @@ const { Provider } = StoreContext;
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useFontReducer({
     tabData: [],
-    isLoading: false,
+    selectTab: "",
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

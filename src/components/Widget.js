@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StoreProvider, useStoreContext } from "../hooks/GlobalState";
-
-import { UPDATE_TABS, UPDATE_TAB_DATA, IS_LOADING } from "..//hooks/actions";
+import Nav from "./Nav";
+import { UPDATE_TABS, UPDATE_TAB_DATA, SELECT_TAB } from "..//hooks/actions";
 
 const Widget = () => {
   const [state, dispatch] = useStoreContext();
@@ -20,6 +20,10 @@ const Widget = () => {
             dispatch({
               type: UPDATE_TABS,
               tabData: data
+            });
+            dispatch({
+              type: SELECT_TAB,
+              selectTab: data[0].id
             })
           }
           setLoading(false);
@@ -30,9 +34,10 @@ const Widget = () => {
         });
     }
   },[dispatch, tabData.length]);
-
+  console.log(state);
   return (
     <div>
+      <Nav/>
       {
         isError ? (
           <div>EROOR....</div>

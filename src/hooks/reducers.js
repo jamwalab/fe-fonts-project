@@ -1,4 +1,4 @@
-import { UPDATE_TABS, UPDATE_TAB_DATA, IS_LOADING } from "./actions";
+import { UPDATE_TABS, UPDATE_TAB_DATA, SELECT_TAB } from "./actions";
 
 import { useReducer } from "react";
 
@@ -11,8 +11,11 @@ export const reducer = (state, action) => {
       };
     case UPDATE_TAB_DATA:
       return state;
-    case IS_LOADING:
-      return state;
+    case SELECT_TAB:
+      return {
+        ...state,
+        selectTab: action.selectTab
+      };
     default:
       return state;
   }
