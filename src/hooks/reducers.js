@@ -5,7 +5,10 @@ import { useReducer } from "react";
 export const reducer = (state, action) => {
   switch (action.type) {
     case UPDATE_TABS:
-      return state;
+      return {
+        ...state,
+        tabData: [...action.tabData]
+      };
     case UPDATE_TAB_DATA:
       return state;
     case IS_LOADING:
