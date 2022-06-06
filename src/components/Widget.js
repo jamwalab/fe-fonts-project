@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useStoreContext } from "../hooks/GlobalState";
 import { UPDATE_TABS, RESET_TAB_DATA, SELECT_TAB } from "../hooks/actions";
-import { Box, Typography} from '@mui/material';
+import { Box } from '@mui/material';
 
 import Nav from "./Nav";
 import FontSelection from '../pages/FontSelection';
+import Loading from '../pages/Loading';
+import ErrorDisplay from "../pages/ErrorDisplay";
+import TextDisplay from '../pages/TextDisplay';
 
 const Widget = () => {
   const [state, dispatch] = useStoreContext();
@@ -24,15 +27,6 @@ const Widget = () => {
           dispatch({
             type: RESET_TAB_DATA
           });
-          /*
-          const newData = await data.map(ele => {
-            ele.data = fetch (`http://json.ffwagency.md/${ele.content_endpoint}`)
-              .then((res) => res.json())
-              .then((data) => {
-                return data;
-              })
-            return ele;
-          })*/
 
           const newData = Promise.all( data.map(async (ele) => {
             const dataElement = await fetch (`http://json.ffwagency.md/${ele.content_endpoint}`)
@@ -66,13 +60,8 @@ const Widget = () => {
       return ele.id === selectTab;
     }));
   }, [tabData, selectTab])
-/*
-  tabData.forEach(element => {
-    console.log(element, Object.keys(element));
-  });*/
-  if (tabData.length) {
-    console.log(tabData[0].data);
-  }
+
+  console.log(state);
 
   return (
     <div>
@@ -82,19 +71,23 @@ const Widget = () => {
       }}>
         {
           isError ? (
-            <div>EROOR....</div>
+            <ErrorDisplay/>
           ) : (
             !isLoading && pageDisplay >= 0 ? (
-              <div>LOADED
+              <Box sx={{
+                margin: "5vh 1vw 5vh 1vw",
+                display: "flex",
+                justifyContent: "center"
+              }}>
                 {
                   tabData[pageDisplay].data.type === "Font selection" ? 
                   <FontSelection fontIndex={pageDisplay}/>
                   :
-                  <div>Other</div>
+                  <TextDisplay fontIndex={pageDisplay}/>
                 }
-              </div>
+              </Box>
             ) : (
-              <div>LOADING............</div>
+              <Loading/>
             )
           )
         }
@@ -102,5 +95,5 @@ const Widget = () => {
     </div>
   )
 }
-
+//<FontSelection fontIndex={pageDisplay}/>
 export default Widget;
