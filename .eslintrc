@@ -1,5 +1,13 @@
 {
   "extends": ["react-app"],
   "rules": {
-  }
+  },
+  "overrides": [
+    {
+      "files": ["test/*.spec.js"],
+      "rules": {
+        "require-jsdoc": "off"
+      }
+    }
+  ],
 }
