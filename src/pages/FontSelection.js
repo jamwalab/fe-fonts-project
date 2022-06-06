@@ -7,7 +7,7 @@ const FontSelection = ({fontIndex}) => {
   const [state] = useStoreContext();
   const { tabData } = state;
 
-  const totalData = Math.ceil((tabData[fontIndex].data.content.length - 3) / 2) > 0 ? Math.ceil((tabData[fontIndex].data.content.length - 3) / 2) : 0;
+  const totalData = Math.ceil((tabData[fontIndex].data.content.length - 3) / 2) > 0 ? 1 : 0;
   return (
     <Box sx={{
         display: "grid",

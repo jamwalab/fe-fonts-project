@@ -18,7 +18,6 @@ const Widget = () => {
   const [ pageDisplay, setPageDisplay] = useState(-1);
 
   useEffect(() => {
-    console.log("trigger");
     if (!tabData.length) {
       setLoading(true);
       fetch ("http://json.ffwagency.md/tabs")
@@ -61,13 +60,12 @@ const Widget = () => {
     }));
   }, [tabData, selectTab])
 
-  console.log(state);
-
   return (
     <div>
       <Nav/>
       <Box sx={{
-        border: "1px solid"
+        border: "2px solid #D3D3D3",
+        borderRadius: "1vh"
       }}>
         {
           isError ? (
