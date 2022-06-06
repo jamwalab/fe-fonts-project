@@ -93,5 +93,4 @@ const Widget = () => {
     </div>
   )
 }
-//<FontSelection fontIndex={pageDisplay}/>
 export default Widget;
